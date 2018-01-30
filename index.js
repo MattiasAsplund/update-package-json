@@ -1,6 +1,8 @@
 const { exec } = require('child_process')
 const fs = require("fs");
 var jsonfile = require('jsonfile')
+var outdatedJson
+var packageJson
 
 exec('npm outdated -json > outdated.json', (err, stdout, stderr) => {
     const stats = fs.statSync("outdated.json")
@@ -8,8 +10,8 @@ exec('npm outdated -json > outdated.json', (err, stdout, stderr) => {
         console.log("No updates available.");
         return;
     }
-    var outdatedJson = jsonfile.readFileSync('outdated.json')
-    var packageJson = jsonfile.readFileSync('package.json')
+    outdatedJson = jsonfile.readFileSync('outdated.json')
+    packageJson = jsonfile.readFileSync('package.json')
     check("devDependencies")
     check("dependencies")
     jsonfile.writeFileSync('test.json', packageJson, { spaces: 2 })
