@@ -2,18 +2,17 @@ const { exec } = require('child_process')
 var jsonfile = require('jsonfile')
 
 exec('npm outdated json > outdated.json', (err, stdout, stderr) => {
-  console.log("He")
   if (err) {
     console.error(`exec error: ${err}`);
     return;
   }
-  console.log(`${stdout}`);
-});
+  var outdatedJson = jsonfile.readFileSync('outdated.json')
+  var packageJson = jsonfile.readFileSync('package.json')
+  for(var prop in packageJson.dependencies) {
+      var msg = "Updating " +  prop + " from " + packageJson.dependencies[prop] +
+        " to " + packageJson.dependencies[prop];
+      console.log(msg)
+  }
+  jsonfile.writeFileSync('test.json', packageJson, {spaces: 2})
+  });
 
-var file = 'package.json'
-var obj = jsonfile.readFileSync(file);
-for(var prop in obj.dependencies) {
-    var msg = "Updating " +  prop + " to " + obj.dependencies[prop]
-    console.log(msg)
-}
-jsonfile.writeFileSync('test.json', obj, {spaces: 2})
