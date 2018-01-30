@@ -1,5 +1,5 @@
 {
-  "name": "update-packages-json",
+  "name": "update-package-json",
   "version": "1.0.0",
   "description": "Updates packages in package.json to latest version (might not work smoothly!)",
   "main": "index.js",
@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jsonfile": "^4.0.0",
-    "npm-run": "^4.1.1"
+    "jsonfile": "^4.0.0"
   }
 }

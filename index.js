@@ -14,8 +14,9 @@ exec('npm outdated -json > outdated.json', (err, stdout, stderr) => {
         console.log("devDependencies")
         console.log("---------------")
         for (var prop in packageJson.devDependencies) {
-            if(outdatedJson[prop] !== undefined) {
-                var msg = "Updating " + prop + " from " + packageJson.devDependencies[prop] +
+            if(outdatedJson[prop] !== undefined &&
+                outdatedJson[prop].latest !== "git") {
+                    var msg = "Updating " + prop + " from " + packageJson.devDependencies[prop] +
                     " to " + outdatedJson[prop].latest
                 packageJson.devDependencies[prop] = outdatedJson[prop].latest
                 console.log(msg)
@@ -26,7 +27,8 @@ exec('npm outdated -json > outdated.json', (err, stdout, stderr) => {
         console.log("dependencies")
         console.log("------------")
         for (var prop in packageJson.dependencies) {
-                if(outdatedJson[prop] !== undefined) {
+                if(outdatedJson[prop] !== undefined && 
+                    outdatedJson[prop].latest !== "git") {
                 var msg = "Updating " + prop + " from " + packageJson.dependencies[prop] +
                     " to " + outdatedJson[prop].latest
                 packageJson.dependencies[prop] = outdatedJson[prop].latest
