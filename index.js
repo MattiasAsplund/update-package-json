@@ -4,7 +4,7 @@ var jsonfile = require('jsonfile')
 
 exec('npm outdated -json > outdated.json', (err, stdout, stderr) => {
     if (err) {
-        console.error(`exec error: ${err}`);
+        console.error(`exec error: ${err} ${stderr}`);
         return;
     }
     const stats = fs.statSync("outdated.json")
