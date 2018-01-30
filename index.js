@@ -2,7 +2,7 @@ const { exec } = require('child_process')
 const fs = require("fs");
 var jsonfile = require('jsonfile')
 
-exec('npm outdated -json > outdated.json', (err, stdout, stderr) => {
+exec('node npm outdated -json > outdated.json', (err, stdout, stderr) => {
     if (err) {
         console.error(`exec error: ${err}`);
         return;
